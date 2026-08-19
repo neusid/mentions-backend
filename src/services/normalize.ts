@@ -42,12 +42,14 @@ function normalizeDate(value: string | number | null): Date | null {
         ] = ddmmyyyy;
 
         const date = new Date(
-            Number(year),
-            Number(month) - 1,
-            Number(day),
-            Number(hour),
-            Number(minute),
-            Number(second)
+            Date.UTC(
+                Number(year),
+                Number(month) - 1,
+                Number(day),
+                Number(hour),
+                Number(minute),
+                Number(second)
+            )
         );
 
         return isNaN(date.getTime()) ? null : date;
