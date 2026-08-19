@@ -5,6 +5,9 @@ function stripHtml(input: string): string {
         .replace(/<script[\s\S]*?<\/script>/gi, "")
         .replace(/<style[\s\S]*?<\/style>/gi, "")
         .replace(/<[^>]*>/g, "")
+        .replace(/&nbsp;/g, " ")
+        .replace(/&quot;/g, '"')
+        .replace(/&amp;/g, "&")
         .replace(/\s+/g, " ")
         .trim();
 }
@@ -23,10 +26,20 @@ function normalizeDate(value: string | number | null): Date | null {
         return isNaN(date.getTime()) ? null : date;
     }
 
-    const ddmmyyyy = value.match(/^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2}):(\d{2}))?$/);
+    const ddmmyyyy = value.match(
+        /^(\d{2})\/(\d{2})\/(\d{4})(?:\s+(\d{2}):(\d{2}):(\d{2}))?$/
+    );
 
     if (ddmmyyyy) {
-        const [, day, month, year, hour = "00", minute = "00", second = "00"] = ddmmyyyy;
+        const [
+            ,
+            day,
+            month,
+            year,
+            hour = "00",
+            minute = "00",
+            second = "00",
+        ] = ddmmyyyy;
 
         const date = new Date(
             Number(year),
@@ -36,8 +49,10 @@ function normalizeDate(value: string | number | null): Date | null {
             Number(minute),
             Number(second)
         );
+
         return isNaN(date.getTime()) ? null : date;
     }
+
     const parsed = new Date(value);
 
     return isNaN(parsed.getTime()) ? null : parsed;
@@ -67,3 +82,10 @@ export function normalizeMention(raw: RawMention): CleanMention {
         dedupeKey: "",
     };
 }
+
+export const _internal = {
+    stripHtml,
+    normalizeSource,
+    normalizeDate,
+    normalizeEngagement,
+};

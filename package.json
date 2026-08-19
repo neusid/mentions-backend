@@ -1,7 +1,7 @@
 {
   "name": "mentions-backend",
   "version": "1.0.0",
-  "description": "Backend service untuk media monitoring platform bulk ingest, search, dan stats endpoint",
+  "description": "Backend service untuk media monitoring platform - bulk ingest, search, dan stats endpoint",
   "main": "dist/app.js",
   "scripts": {
     "dev": "tsx watch src/app.ts",
