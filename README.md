@@ -18,12 +18,7 @@ Install dependencies:
 npm install
 ```
 
-Buat file `.env`:
-
-```env
-DATABASE_URL=postgresql://USER:PASSWORD@HOST/DATABASE?sslmode=require
-PORT=3000
-```
+Delete `.example` dari file `.env.example`:
 
 Jalankan migration PostgreSQL:
 
