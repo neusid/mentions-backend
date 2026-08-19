@@ -57,8 +57,8 @@ src/
 ├── types/
 │   └── mention.ts
 ├── services/
-│   ├── normalize.test.ts
-│   └── dedupe.test.ts
+│   ├── normalize.ts
+│   └── dedupe.ts
 ├── db/
 │   ├── client.ts
 │   └── migrations/
